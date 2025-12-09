@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+src/trading_universe/__init__.py
+src/trading_universe/backtester.py
+src/trading_universe/data.py
+src/trading_universe/metrics.py
+src/trading_universe/monte_carlo.py
+src/trading_universe/plotting.py
+src/trading_universe.egg-info/PKG-INFO
+src/trading_universe.egg-info/SOURCES.txt
+src/trading_universe.egg-info/dependency_links.txt
+src/trading_universe.egg-info/requires.txt
+src/trading_universe.egg-info/top_level.txt
+src/trading_universe/strategies/__init__.py
+src/trading_universe/strategies/base.py
+src/trading_universe/strategies/buy_and_hold.py
+src/trading_universe/strategies/sma_cross.py

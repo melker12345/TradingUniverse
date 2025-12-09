@@ -1,0 +1,25 @@
+# Trading Strategy Testing Universe
+
+Opinionated, lightweight scaffolding for experimenting with trading strategies, evaluating key performance metrics, visualizing results, and running simple Monte Carlo bootstraps to probe outcome ranges.
+
+## Quick start
+1. Install dependencies (ideally in a virtualenv):
+   ```
+   pip install -r requirements.txt
+   ```
+2. Run the demo to see sample strategies, plots, and metrics:
+   ```
+   python -m examples.run_demo
+   ```
+
+## Structure
+- `src/trading_universe/` – core library (backtester, metrics, plotting, strategies, monte carlo utilities).
+- `examples/run_demo.py` – generates synthetic price data, runs a few strategies vs. buy-and-hold, prints metrics, and saves charts.
+
+## Key features
+- Pluggable strategy interface (`BaseStrategy`) so you can add many strategies.
+- Core metrics: annualized return, volatility, Sharpe, Sortino, max drawdown, hit rate, profit factor, average gain/loss, alpha/beta vs. benchmark.
+- Benchmark-aware backtesting to compare with simple buy-and-hold.
+- Plot equity curves and drawdowns per strategy.
+- Monte Carlo bootstraps on return streams to visualize payout dispersion.
+

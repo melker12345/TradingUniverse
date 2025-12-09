@@ -1,0 +1,26 @@
+{
+  "tickers": {
+    "INVE-B": "INVE-B.ST",
+    "ATCO-A": "ATCO-A.ST",
+    "ATCO-B": "ATCO-B.ST",
+    "VOLV-B": "VOLV-B.ST",
+    "ERIC-B": "ERIC-B.ST",
+    "NDA-SE": "NDA-SE.ST",
+    "SEB-A": "SEB-A.ST",
+    "SAND": "SAND.ST",
+    "ESSITY-B": "ESSITY-B.ST",
+    "HEXA-B": "HEXA-B.ST"
+  },
+  "rows_per_ticker": {
+    "INVE-B": 2516,
+    "ATCO-A": 2516,
+    "ATCO-B": 2516,
+    "VOLV-B": 2516,
+    "ERIC-B": 2516,
+    "NDA-SE": 2516,
+    "SEB-A": 2516,
+    "SAND": 2516,
+    "ESSITY-B": 2135,
+    "HEXA-B": 2516
+  }
+}
