@@ -15,13 +15,18 @@ import pandas as pd
 # - Simulates geometric Brownian motion across a grid of mu (drift) and sigma (vol).
 # - Dynamically loads a strategy class/module and applies it to each price path.
 # - Outputs percentile stats for final equity and drawdown to a CSV.
-# - Swap strategies by changing --strategy-module/--strategy-class/--strategy-kwargs.
-#   Example (best split sleeve):
+#
+# Defaults are set to our best split-sleeve config; you can run with NO flags:
+#   python -m examples.sim_gbm_strategy
+#
+# To override, pass only what you need, e.g. higher path count:
+#   python -m examples.sim_gbm_strategy --paths 10000
+#
+# Or swap strategy:
 #   python -m examples.sim_gbm_strategy \
-#     --strategy-module trading_universe.strategies.leverage_dip_split \
-#     --strategy-class LeverageDipSplit \
-#     --strategy-kwargs '{"dip_pct":0.04,"base_weight":0.9,"weight_a":0.05,"lev_a":10,"weight_b":0.05,"lev_b":20,"dd_trigger":0.4,"exit_recover_frac":0.95}' \
-#     --mu-grid 0.05,0.10,0.15 --sigma-grid 0.10,0.20,0.30 --paths 5000 --steps 2520
+#     --strategy-module trading_universe.strategies.leverage_dip \
+#     --strategy-class LeverageDip \
+#     --strategy-kwargs '{"dip_pct":0.04,"base_weight":0.9,"leverage":10}'
 # -----------------------------------------------------------------------------
 
 
@@ -78,9 +83,21 @@ def summarize(vals: np.ndarray) -> Dict[str, float]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="GBM Monte Carlo strategy tester (run offline on a fast machine).")
-    parser.add_argument("--strategy-module", required=True, help="e.g., trading_universe.strategies.leverage_dip_split")
-    parser.add_argument("--strategy-class", required=True, help="e.g., LeverageDipSplit")
-    parser.add_argument("--strategy-kwargs", default="{}", help='JSON dict of init kwargs, e.g. {"dip_pct":0.04,...}')
+    parser.add_argument(
+        "--strategy-module",
+        default="trading_universe.strategies.leverage_dip_split",
+        help="Strategy module to import.",
+    )
+    parser.add_argument(
+        "--strategy-class",
+        default="LeverageDipSplit",
+        help="Strategy class name within the module.",
+    )
+    parser.add_argument(
+        "--strategy-kwargs",
+        default='{"dip_pct":0.04,"base_weight":0.9,"weight_a":0.05,"lev_a":10,"weight_b":0.05,"lev_b":20,"dd_trigger":0.4,"exit_recover_frac":0.95}',
+        help='JSON dict of init kwargs.',
+    )
     parser.add_argument("--mu-grid", default="0.05,0.10,0.15", help="Comma sep annualized drift values")
     parser.add_argument("--sigma-grid", default="0.10,0.20,0.30", help="Comma sep annualized vol values")
     parser.add_argument("--paths", type=int, default=2000, help="Monte Carlo paths per grid point")
