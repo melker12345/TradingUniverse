@@ -16,6 +16,12 @@ import pandas as pd
 # - Dynamically loads a strategy class/module and applies it to each price path.
 # - Outputs percentile stats for final equity and drawdown to a CSV.
 # - Swap strategies by changing --strategy-module/--strategy-class/--strategy-kwargs.
+#   Example (best split sleeve):
+#   python -m examples.sim_gbm_strategy \
+#     --strategy-module trading_universe.strategies.leverage_dip_split \
+#     --strategy-class LeverageDipSplit \
+#     --strategy-kwargs '{"dip_pct":0.04,"base_weight":0.9,"weight_a":0.05,"lev_a":10,"weight_b":0.05,"lev_b":20,"dd_trigger":0.4,"exit_recover_frac":0.95}' \
+#     --mu-grid 0.05,0.10,0.15 --sigma-grid 0.10,0.20,0.30 --paths 5000 --steps 2520
 # -----------------------------------------------------------------------------
 
 
